@@ -18,9 +18,9 @@ class ArticleController extends Controller
     public function userAdd(){
         return view('articles/createUser');
     }
-    public function userCreate(){
-        return "User Create Process";
-    }
+    // public function userCreate(){
+    //     return "User Create Process";
+    // }
     public function userEdit($userID){
         return view("articles/editUser");
     }

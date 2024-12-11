@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,17 @@ use App\Http\Controllers\ArticleController;
 Route::get('/',  [ArticleController::class, 'carView']);
 Route::get('/articles', [ArticleController::class, 'carView']);
 
-Route::get('/articles/users', [ArticleController::class, 'userView']);
-Route::get('/articles/users/create', [ArticleController::class, 'userAdd']);
-Route::post('/articles/users/create', [ArticleController::class, 'userCreate']);
-Route::get('/articles/users/edit/{id}', [ArticleController::class, 'userEdit']);
-Route::post('/articles/users/edit/{id}', [ArticleController::class, 'userUpdate']);
-Route::get('/articles/users/delete/{id}', [ArticleController::class, 'userDelete']);
+// Route::get('/articles/users', [ArticleController::class, 'userView']);
+Route::get('/articles/users', [CustomerController::class, 'userView']);
+Route::post('/articles/users/create', [CustomerController::class, 'store'])->name('users.store');
+Route::get('/articles/users/create', [CustomerController::class, 'userAdd']);
+// Route::post('/articles/users/create', [ArticleController::class, 'userCreate']);
+Route::get('/articles/users/edit/{id}', [CustomerController::class, 'userEdit']);
+Route::post('/articles/users/edit/{id}', [CustomerController::class, 'userUpdate']);
+Route::get('/articles/users/delete/{id}', [CustomerController::class, 'userDelete']);
+
+
+
 Route::get('/articles/users/{id}/buyCar', [ArticleController::class, 'buyCar']);
 Route::get('/articles/users/{id}/buyCar/{cid}', [ArticleController::class, 'buyCarProcess']);
 Route::get('/articles/users/{id}/ownCar/edit', [ArticleController::class, 'ownerCarEdit']);

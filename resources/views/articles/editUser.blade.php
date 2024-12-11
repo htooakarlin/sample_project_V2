@@ -128,23 +128,23 @@
             <li><a href="/articles/users">Users</a></li>
         </ul>
 
-        <form method="post">
-            @csrf
-            <div class="container">
-                <h1>Edit User</h1>
-                <hr>
-            
-                <label for="name"><b>Name</b></label>
-                <input type="text" value="name" name="name" id="name" required>
-            
-                <label for="phone"><b>Phone</b></label>
-                <input type="text" value="09999203989" name="phone" id="phone" required maxlength="13">
-            
-                <hr>
-            
-                <button type="submit" class="registerbtn">Edit</button>
-            </div>
-        </form>
+        <form method="post" action="/articles/users/edit/{{ $user->id }}">
+        @csrf
+        <div class="container">
+            <h1>Edit User</h1>
+            <hr>
+        
+            <label for="name"><b>Name</b></label>
+            <input type="text" value="{{ $user->name }}" name="name" id="name" required>
+        
+            <label for="phone"><b>Phone</b></label>
+            <input type="text" value="{{ $user->phone }}" name="phone" id="phone" required maxlength="13">
+        
+            <hr>
+        
+            <button type="submit" class="registerbtn">Edit</button>
+        </div>
+    </form>
 
         <script>
             const phoneInput = document.getElementById('phone');

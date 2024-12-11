@@ -128,7 +128,7 @@
             <li><a href="/articles/users">Users</a></li>
         </ul>
 
-        <form method="post">
+        <form method="post" action="/articles/users/create">
             @csrf
             <div class="container">
                 <h1>Create User</h1>
