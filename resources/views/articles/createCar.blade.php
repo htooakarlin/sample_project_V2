@@ -140,6 +140,9 @@
                 <label for="make"><b>Make</b></label>
                 <input type="text" placeholder="Enter Make" name="make" id="make" required>
 
+                <label for="price"><b>Price</b></label>
+                <input type="text" placeholder="Enter Price" name="price" id="price" required>
+
                 <label for="year"><b>Year</b></label>
                 <input type="number" placeholder="Enter Year" name="year" id="year" value="2000" min="1900" max="2100">
             
