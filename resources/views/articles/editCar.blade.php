@@ -140,6 +140,9 @@
                 <label for="make"><b>Make</b></label>
                 <input type="text" value="Car Make" name="make" id="make" required>
 
+                <label for="price"><b>Price</b></label>
+                <input type="text" value="Car Price" name="price" id="price" required>
+
                 <label for="year"><b>Year</b></label>
                 <input type="number" value="2020" name="year" id="year" value="2000" min="1900" max="2100">
             
