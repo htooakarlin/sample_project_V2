@@ -109,7 +109,7 @@
                 <th>Name</th>
                 <th>Phone</th>
             </tr>
-            <!-- <tr data-id="1">
+            <tr data-id="1">
                 <td>1</td>
                 <td>Marie Bertrand</td>
                 <td>+33 123 456 789</td>
@@ -118,14 +118,7 @@
                 <td>2</td>
                 <td>Marie Bertrand</td>
                 <td>+33 123 456 789</td>
-            </tr> -->
-            @foreach ($customers as $customer)
-                <tr data-id="{{ $customer->id }}">
-                    <td>{{ $customer->id }}</td>
-                    <td>{{ $customer->name }}</td>
-                    <td>{{ $customer->phone }}</td>
-                </tr>
-            @endforeach
+            </tr>
         </table>
 
         <button id="create_btn" onclick="location.href= '/articles/users/create';">Create User</button>
@@ -148,18 +141,21 @@
                     <th>ID</th>
                     <th>Model</th>
                     <th>Make</th>
+                    <th>Price</th>
                     <th>Year</th>
                 </tr>
                 <tr data-id="1">
                     <td>1</td>
                     <td>Revuelto</td>
                     <td>Lamborghini</td>
+                    <td>$2000000</td>
                     <td>2024</td>
                 </tr>
                 <tr data-id="2">
                     <td>2</td>
                     <td>Roma</td>
                     <td>Ferrari</td>
+                    <td>$1000000</td>
                     <td>2020</td>
                 </tr>
             </table>
