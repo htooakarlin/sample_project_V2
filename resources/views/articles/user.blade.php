@@ -30,7 +30,7 @@
                 background-color: rgb(165, 214, 238);
             }
 
-            button{
+            button {
                 padding: 8px 15px;
                 border: none;
                 border-radius: 4px;
@@ -38,19 +38,19 @@
                 font-weight: bold;
                 color: white;
             }
-            button:hover{
-                background-color:#745dc7; 
+            button:hover {
+                background-color: #745dc7;
             }
 
-            #selectedID_area{
-                display:flex;
+            #selectedID_area {
+                display: flex;
                 align-items: center;
             }
-            #selectedID_area button{
+            #selectedID_area button {
                 padding: 8px 15px;
-                height: auto; 
+                height: auto;
             }
-            #selectedID{
+            #selectedID {
                 padding-right: 10px;
             }
 
@@ -109,16 +109,6 @@
                 <th>Name</th>
                 <th>Phone</th>
             </tr>
-            <!-- <tr data-id="1">
-                <td>1</td>
-                <td>Marie Bertrand</td>
-                <td>+33 123 456 789</td>
-            </tr>
-            <tr data-id="2">
-                <td>2</td>
-                <td>Marie Bertrand</td>
-                <td>+33 123 456 789</td>
-            </tr> -->
             @foreach ($customers as $customer)
                 <tr data-id="{{ $customer->id }}">
                     <td>{{ $customer->id }}</td>
@@ -128,11 +118,11 @@
             @endforeach
         </table>
 
-        <button id="create_btn" onclick="location.href= '/articles/users/create';">Create User</button>
+        <button id="create_btn" onclick="location.href='/articles/users/create';">Create User</button>
 
         <div id="selectedID_area" style="visibility: hidden;">
-            <h3 id="selectedID">Selected User ID:  </h3>
-            <button id="cancel_btn"  onclick="cancel()">Cancel</button>
+            <h3 id="selectedID">Selected User ID: </h3>
+            <button id="cancel_btn" onclick="cancel()">Cancel</button>
         </div>
 
         <div id="btns_area" style="visibility: hidden;">
@@ -141,7 +131,7 @@
         </div>
 
         <div id="belongCars" style="display: none">
-            <h1>The Cars belongs to Selected User</h1>
+            <h1>The Cars belongs to User</h1>
 
             <table id="CarsOfUserTable">
                 <tr>
@@ -164,12 +154,14 @@
                     <td>Ferrari</td>
                     <td>$1000000</td>
                     <td>2020</td>
+                    <th>Customer ID</th>
+                    <th>Car ID</th>
+                    <th>Purchase Date</th>
                 </tr>
             </table>
             <button id="buyCar_btn">Buy Car</button>
             <button id="buyCar_edit_btn">Edit</button>
         </div>
-        
 
         <script>
             const table = document.getElementById("usersTable");
@@ -185,6 +177,7 @@
             const buyCar_edit_btn = document.getElementById("buyCar_edit_btn");
 
             const belongCars = document.getElementById("belongCars");
+            const carsTable = document.getElementById("CarsOfUserTable");
             
             const cancel = () => {
                 document.querySelectorAll("tr.selected").forEach(row => row.classList.remove("selected"));
@@ -194,7 +187,6 @@
                 btns_area.style.visibility = 'hidden';
                 belongCars.style.display = 'none';
             }
-
 
             table.addEventListener("click", (event) => {
                 const clickedRow = event.target.closest("tr");
@@ -207,9 +199,27 @@
                 btns_area.style.visibility = 'visible';
                 belongCars.style.display = 'block';
 
-
                 clickedRow.classList.add("selected");
                 const selectedID = clickedRow.getAttribute("data-id");
+
+                fetch(`/users/${selectedID}/purchases`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear existing rows except the header
+                        carsTable.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
+
+                        // Add rows for each purchase
+                        data.forEach(purchase => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${purchase.customer_id}</td>
+                                <td>${purchase.car_id}</td>
+                                <td>${purchase.purchase_date}</td>
+                            `;
+                            carsTable.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching purchases:', error));
 
                 edit_btn.onclick = function() {
                     window.location.href = `/articles/users/edit/${selectedID}`;

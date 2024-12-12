@@ -111,6 +111,7 @@
                 <th>Price</th>
                 <th>Year</th>
             </tr>
+<<<<<<< HEAD
             <tr data-id="1">
                 <td>1</td>
                 <td>Revuelto</td>
@@ -125,6 +126,17 @@
                 <td>$1000000</td>
                 <td>2020</td>
             </tr>
+=======
+            @foreach($cars as $car)
+                <tr data-id="{{ $car->id }}">
+                    <td>{{ $car->id }}</td>
+                    <td>{{ $car->model }}</td>
+                    <td>{{ $car->brand }}</td>
+                    <td>${{ number_format($car->price, 2) }}</td>
+                    <td>{{ $car->year }}</td>
+                </tr>
+            @endforeach
+>>>>>>> optest
         </table>
 
         <div id="selectedID_area" style="visibility: hidden;">
