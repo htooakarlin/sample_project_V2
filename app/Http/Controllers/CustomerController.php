@@ -119,7 +119,7 @@ class CustomerController extends Controller
         $purchases = Purchase::where('customer_id', $id)->with('car')->get(); 
         $purchasedData = $purchases->map(function($purchase) {
             return [
-                'id' => $purchase->id,
+                'id' => $purchase->car->id,
                 'model' => $purchase->car->model,
                 'make' => $purchase->car->brand,
                 'price' => $purchase->car->price,

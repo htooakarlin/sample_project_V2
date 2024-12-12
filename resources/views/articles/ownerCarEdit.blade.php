@@ -105,13 +105,23 @@
 
         <table id="carsTable">
             <tr>
-                <th>Customer</th>
-                <th>Car</th>
-                <th>purchase</th>
-                <!-- <th>Price</th> -->
-                <!-- <th>Year</th> -->
+                <th>ID</th>
+                <th>Model</th>
+                <th>Make</th>
+                <th>Price</th>
+                <th>Year</th>
+                <th>Purchase-Date</th>  
             </tr>
-            @foreach ($purchases as $purchase) <tr data-id="{{ $purchase->car_id }}"> <td>{{ $purchase->customer_id }}</td> <td>{{ $purchase->car_id }}</td> <td>{{ $purchase->purchase_date }}</td> </tr> @endforeach
+            @foreach ($purchases as $purchase) 
+                <tr data-id="{{ $purchase->id }}"> 
+                    <td>{{ $purchase->id  }}</td>
+                    <td>{{ $purchase->model }}</td> 
+                    <td>{{ $purchase->brand }}</td> 
+                    <td>{{ $purchase->price }}</td> 
+                    <td>{{ $purchase->year }}</td> 
+                    <td>{{ $purchase->purchase_date }}</td> 
+                </tr> 
+            @endforeach
         </table>
 
         <div id="selectedID_area" style="visibility: hidden;">

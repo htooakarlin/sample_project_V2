@@ -135,10 +135,10 @@
                 <hr>
             
                 <label for="name"><b>Name</b></label>
-                <input type="text" value="name" name="name" id="name" required>
+                <input type="text" value="{{ $user->name }}" name="name" id="name" required>
             
                 <label for="phone"><b>Phone</b></label>
-                <input type="text" value="09999203989" name="phone" id="phone" required maxlength="13">
+                <input type="text" value="{{ $user->phone }}" name="phone" id="phone" required maxlength="13">
             
                 <hr>
             

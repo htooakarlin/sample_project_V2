@@ -86,7 +86,10 @@ class ArticleController extends Controller
 
 public function buyCar($userID)
 {
-    $cars = Car::all(); // Assuming all available cars are shown
+    $cars = Car::whereNotIn('id', function($query){
+        $query->select('car_id')->from('purchases');
+    })->get();
+
     $buyerID = $userID;
 
     return view('articles.buyCar', compact('cars', 'buyerID'));
@@ -115,7 +118,13 @@ public function buyCar($userID)
     return back()->with('error', "Failed to process the purchase.");
 }
     public function ownerCarEdit($id) { 
-        $purchases = Purchase::where('customer_id', $id)->get(); return view('articles.ownerCarEdit', ['purchases' => $purchases, 'ownerID' => $id]); } 
+        $cars = Car::select('cars.*', 'purchases.purchase_date')
+            ->join('purchases', 'cars.id', '=', 'purchases.car_id')
+            ->where('purchases.customer_id', $id)
+            ->get();
+        
+        return view('articles.ownerCarEdit', ['purchases' => $cars, 'ownerID' => $id]); 
+    } 
         
     public function ownerCarDelete($id, $cid) {
          $purchase = Purchase::where('customer_id', $id)->where('car_id', $cid)->first(); if ($purchase) { $purchase->delete(); } return redirect('/articles/users')->with('success', 'Car ownership deleted successfully'); }
