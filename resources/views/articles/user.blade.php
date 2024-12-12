@@ -109,6 +109,7 @@
                 <th>Name</th>
                 <th>Phone</th>
             </tr>
+<<<<<<< HEAD
             @foreach ($customers as $customer)
                 <tr data-id="{{ $customer->id }}">
                     <td>{{ $customer->id }}</td>
@@ -116,6 +117,18 @@
                     <td>{{ $customer->phone }}</td>
                 </tr>
             @endforeach
+=======
+            <tr data-id="1">
+                <td>1</td>
+                <td>Marie Bertrand</td>
+                <td>+33 123 456 789</td>
+            </tr>
+            <tr data-id="2">
+                <td>2</td>
+                <td>Marie Bertrand</td>
+                <td>+33 123 456 789</td>
+            </tr>
+>>>>>>> optest
         </table>
 
         <button id="create_btn" onclick="location.href='/articles/users/create';">Create User</button>

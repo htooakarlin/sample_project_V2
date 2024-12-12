@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Customer;
 use App\Models\Car;
 use App\Models\Purchase;
 use Carbon\Carbon;
+=======
+use App\Models\Car;
+>>>>>>> optest
 
 class ArticleController extends Controller
 {
     public function carView(){
-        return view('articles/car');
+        $carDatas = Car::all();
+        return view('articles/car', [
+            'carDatas' => $carDatas
+        ]);
     }
     public function userView(){
         return view('articles/user');
@@ -126,15 +133,35 @@ public function buyCar($userID)
         return view('articles/createCar');
     }
     public function carCreate(){
-        return "Car Create Process";
+        $car = new Car;
+        $car->model = request()->model;
+        $car->brand = request()->make;
+        $car->price = request()->price;
+        $car->year = request()->year;
+        $car->save();
+
+        return redirect('/');
     }
     public function carEdit($carID){
-        return view("articles/editCar");
+        $carDatas = Car::find($carID);
+        return view("articles/editCar", [
+            'carDatas' => $carDatas
+        ]);
     }
-    public function carUpdate(){
-        return "Car Update Process";
+    public function carUpdate($carID){
+        $car = Car::find($carID);
+        $car->model = request()->model;
+        $car->brand = request()->make;
+        $car->price = request()->price;
+        $car->year = request()->year;
+        $car->save();
+
+        return redirect('/');
     }
     public function carDelete($carID){
-        return "Car ID: ($carID) Delete Process";
+        $carDatas = Car::find($carID);
+        $carDatas->delete();
+
+        return back();
     }
 }
