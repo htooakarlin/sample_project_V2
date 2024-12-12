@@ -29,6 +29,7 @@ Route::get('/articles/users/delete/{id}', [CustomerController::class, 'userDelet
 // web.php
 // Route::get('/articles/users/{userId}/showUserCars', [CustomerController::class, 'showUserCars']);
 Route::get('/users/{id}/purchases', [CustomerController::class, 'getPurchases']);
+Route::get('/cars/{id}/purchases', [ArticleController::class, 'getCarPurchases']);
 
 Route::get('/articles/users/{id}/buyCar', [ArticleController::class, 'buyCar']);
 Route::get('/articles/users/{id}/buyCar/{cid}', [ArticleController::class, 'buyCarProcess']);

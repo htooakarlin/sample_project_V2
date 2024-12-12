@@ -163,6 +163,7 @@
             const delete_btn = document.getElementById("delete_btn");
 
             const belongCars = document.getElementById("belongCars");
+            const carsTable = document.getElementById("CarsOfUserTable");
 
             const cancel = () => {
                 document.querySelectorAll("tr.selected").forEach(row => row.classList.remove("selected"));
@@ -185,6 +186,25 @@
 
                 clickedRow.classList.add("selected");
                 const selectedID = clickedRow.getAttribute("data-id");
+
+                fetch(`/users/${selectedID}/purchases`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Clear existing rows except the header
+                        carsTable.querySelectorAll('tr:not(:first-child)').forEach(row => row.remove());
+
+                        // Add rows for each purchase
+                        data.forEach(purchase => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${purchase.customer_id}</td>
+                                <td>${purchase.car_id}</td>
+                                <td>${purchase.purchase_date}</td>
+                            `;
+                            carsTable.appendChild(row);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching purchases:', error));
 
                 edit_btn.onclick = function() {
                     window.location.href = `/articles/cars/edit/${selectedID}`;

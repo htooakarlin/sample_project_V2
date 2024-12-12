@@ -160,4 +160,9 @@ public function buyCar($userID)
 
         return back();
     }
+
+    public function getCarPurchases($id){
+        $purchase = Purchase::where('car_id', $id)->with('user')->get();
+        return response()->json($purchase);
+    }
 }

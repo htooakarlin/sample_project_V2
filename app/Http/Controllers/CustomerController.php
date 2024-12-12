@@ -115,6 +115,9 @@ class CustomerController extends Controller
 //     return response()->json(['purchases' => $purchases]);
 // }
 
-public function getPurchases($id) { $purchases = Purchase::where('customer_id', $id)->with('car')->get(); return response()->json($purchases); }
+    public function getPurchases($id) { 
+        $purchases = Purchase::where('customer_id', $id)->with('car')->get(); 
+        return response()->json($purchases); 
+    }
 
 }
