@@ -110,18 +110,15 @@
                 <th>Make</th>
                 <th>Year</th>
             </tr>
-            <tr data-id="1">
-                <td>1</td>
-                <td>Revuelto</td>
-                <td>Lamborghini</td>
-                <td>2024</td>
-            </tr>
-            <tr data-id="2">
-                <td>2</td>
-                <td>Roma</td>
-                <td>Ferrari</td>
-                <td>2020</td>
-            </tr>
+            @foreach($cars as $car)
+                <tr data-id="{{ $car->id }}">
+                    <td>{{ $car->id }}</td>
+                    <td>{{ $car->model }}</td>
+                    <td>{{ $car->brand }}</td>
+                    <td>${{ number_format($car->price, 2) }}</td>
+                    <td>{{ $car->year }}</td>
+                </tr>
+            @endforeach
         </table>
 
         <div id="selectedID_area" style="visibility: hidden;">

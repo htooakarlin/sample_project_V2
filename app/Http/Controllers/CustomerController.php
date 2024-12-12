@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Customer;
+use App\Models\Purchase;
 
 use Illuminate\Http\Request;
 
@@ -77,5 +78,43 @@ class CustomerController extends Controller
     }
 }
 
-    
+// public function showUserCars($userId)
+// {
+//     $user = Customer::with('purchases.car')->findOrFail($userId);
+//     return view('articles.user', compact('user'));
+// }
+
+// public function showUserCars($id)
+// {
+//     $purchases = \DB::table('purchases')
+//         ->join('cars', 'purchases.car_id', '=', 'cars.id')
+//         ->select('purchases.*', 'cars.model', 'cars.make', 'cars.year')
+//         ->where('purchases.customer_id', $id)
+//         ->get();
+
+//     return response()->json(['purchases' => $purchases]);
+// }
+
+// public function showUserCars($id)
+// {
+//     $customer = Customer::with(['purchases.car'])->find($id);
+
+//     if (!$customer) {
+//         return response()->json(['message' => 'Customer not found'], 404);
+//     }
+
+//     $purchases = $customer->purchases->map(function ($purchase) {
+//         return [
+//             'customer_id' => $purchase->customer_id,
+//             'car_id' => $purchase->car->id,
+//             'purchase_date' => $purchase->purchase_date,
+//             'year' => $purchase->car->year,
+//         ];
+//     });
+
+//     return response()->json(['purchases' => $purchases]);
+// }
+
+public function getPurchases($id) { $purchases = Purchase::where('customer_id', $id)->with('car')->get(); return response()->json($purchases); }
+
 }
