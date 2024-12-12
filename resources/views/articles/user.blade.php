@@ -135,13 +135,13 @@
 
             <table id="CarsOfUserTable">
                 <tr>
-                    <th>ID</th>
-                    <th>Model</th>
-                    <th>Make</th>
-                    <th>Price</th>
-                    <th>Year</th>
+                    <th>Customer ID</th>
+                    <th>Car ID</th>
+                    <th>Purchase-Date</th>
+                    <!-- <th>Price</th> -->
+                    <!-- <th>Year</th> -->
                 </tr>
-                <tr data-id="1">
+                <!-- <tr data-id="1">
                     <td>1</td>
                     <td>Revuelto</td>
                     <td>Lamborghini</td>
@@ -157,7 +157,7 @@
                     <th>Customer ID</th>
                     <th>Car ID</th>
                     <th>Purchase Date</th>
-                </tr>
+                </tr> -->
             </table>
             <button id="buyCar_btn">Buy Car</button>
             <button id="buyCar_edit_btn">Edit</button>
