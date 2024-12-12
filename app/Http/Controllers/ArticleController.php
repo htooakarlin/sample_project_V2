@@ -114,14 +114,12 @@ public function buyCar($userID)
 
     return back()->with('error', "Failed to process the purchase.");
 }
-    public function ownerCarEdit($userID){
-        return view("articles/ownerCarEdit", [
-            'ownerID' => $userID
-        ]);
-    }
-    public function ownerCarDelete($uid, $cid){
-        return "User ($uid) delete car ($cid)";
-    }
+    public function ownerCarEdit($id) { 
+        $purchases = Purchase::where('customer_id', $id)->get(); return view('articles.ownerCarEdit', ['purchases' => $purchases, 'ownerID' => $id]); } 
+        
+    public function ownerCarDelete($id, $cid) {
+         $purchase = Purchase::where('customer_id', $id)->where('car_id', $cid)->first(); if ($purchase) { $purchase->delete(); } return redirect('/articles/users')->with('success', 'Car ownership deleted successfully'); }
+
 
     // Car Section ------------------------------------------
 
