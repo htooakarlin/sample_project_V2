@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Models\Customer;
 use App\Models\Car;
 use App\Models\Purchase;
 use Carbon\Carbon;
-=======
-use App\Models\Car;
->>>>>>> optest
 
 class ArticleController extends Controller
 {

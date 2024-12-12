@@ -111,22 +111,6 @@
                 <th>Price</th>
                 <th>Year</th>
             </tr>
-<<<<<<< HEAD
-            <tr data-id="1">
-                <td>1</td>
-                <td>Revuelto</td>
-                <td>Lamborghini</td>
-                <td>$2000000</td>
-                <td>2024</td>
-            </tr>
-            <tr data-id="2">
-                <td>2</td>
-                <td>Roma</td>
-                <td>Ferrari</td>
-                <td>$1000000</td>
-                <td>2020</td>
-            </tr>
-=======
             @foreach($carDatas as $carData)
                 <tr data-id="{{ $carData->id }}">
                     <td>{{ $carData->id }}</td>
@@ -136,7 +120,6 @@
                     <td>{{ $carData->year }}</td>
                 </tr>
             @endforeach
->>>>>>> optest
         </table>
 
         <button id="create_btn" onclick="location.href= '/articles/cars/create';">Create Car</button>

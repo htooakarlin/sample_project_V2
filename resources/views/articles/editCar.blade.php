@@ -143,9 +143,6 @@
                 <label for="price"><b>Price</b></label>
                 <input type="text" value="{{ $carDatas->price }}" name="price" id="price" required>
 
-                <label for="price"><b>Price</b></label>
-                <input type="text" value="Car Price" name="price" id="price" required>
-
                 <label for="year"><b>Year</b></label>
                 <input type="number" value="{{ $carDatas->year }}" name="year" id="year" value="2000" min="1900" max="2100">
             
