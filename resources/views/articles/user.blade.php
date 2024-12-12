@@ -135,11 +135,12 @@
 
             <table id="CarsOfUserTable">
                 <tr>
-                    <th>Customer ID</th>
-                    <th>Car ID</th>
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>Make</th>
+                    <th>Price</th> 
+                    <th>Year</th>
                     <th>Purchase-Date</th>
-                    <!-- <th>Price</th> -->
-                    <!-- <th>Year</th> -->
                 </tr>
                 <!-- <tr data-id="1">
                     <td>1</td>
@@ -212,8 +213,11 @@
                         data.forEach(purchase => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${purchase.customer_id}</td>
-                                <td>${purchase.car_id}</td>
+                                <td>${purchase.id}</td>
+                                <td>${purchase.model}</td>
+                                <td>${purchase.make}</td>
+                                <td>${purchase.price}</td>
+                                <td>${purchase.year}</td>
                                 <td>${purchase.purchase_date}</td>
                             `;
                             carsTable.appendChild(row);

@@ -117,7 +117,17 @@ class CustomerController extends Controller
 
     public function getPurchases($id) { 
         $purchases = Purchase::where('customer_id', $id)->with('car')->get(); 
-        return response()->json($purchases); 
+        $purchasedData = $purchases->map(function($purchase) {
+            return [
+                'id' => $purchase->id,
+                'model' => $purchase->car->model,
+                'make' => $purchase->car->brand,
+                'price' => $purchase->car->price,
+                'year' => $purchase->car->year,
+                'purchase_date' => $purchase->purchase_date
+            ];
+        });
+        return response()->json($purchasedData); 
     }
 
 }
