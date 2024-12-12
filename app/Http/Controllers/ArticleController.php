@@ -162,7 +162,14 @@ public function buyCar($userID)
     }
 
     public function getCarPurchases($id){
-        $purchase = Purchase::where('car_id', $id)->with('user')->get();
-        return response()->json($purchase);
+        $purchases = Purchase::where('car_id', $id)->with('customer')->get();
+        $purchasedData = $purchases->map(function($purchase) {
+            return [
+                'id' => $purchase->id,
+                'name' => $purchase->customer->name,
+                'phone' => $purchase->customer->phone
+            ];
+        });
+        return response()->json($purchasedData);
     }
 }

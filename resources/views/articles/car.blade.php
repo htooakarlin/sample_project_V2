@@ -143,11 +143,6 @@
                     <th>Name</th>
                     <th>Phone</th>
                 </tr>
-                <tr data-id="1">
-                    <td>1</td>
-                    <td>Marie Bertrand</td>
-                    <td>+33 123 456 789</td>
-                </tr>
             </table>
         </div>
 
@@ -187,7 +182,7 @@
                 clickedRow.classList.add("selected");
                 const selectedID = clickedRow.getAttribute("data-id");
 
-                fetch(`/users/${selectedID}/purchases`)
+                fetch(`/cars/${selectedID}/purchases`)
                     .then(response => response.json())
                     .then(data => {
                         // Clear existing rows except the header
@@ -197,9 +192,9 @@
                         data.forEach(purchase => {
                             const row = document.createElement('tr');
                             row.innerHTML = `
-                                <td>${purchase.customer_id}</td>
-                                <td>${purchase.car_id}</td>
-                                <td>${purchase.purchase_date}</td>
+                                <td>${purchase.id}</td>
+                                <td>${purchase.name}</td>
+                                <td>${purchase.phone}</td>
                             `;
                             carsTable.appendChild(row);
                         });

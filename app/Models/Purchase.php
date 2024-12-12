@@ -15,6 +15,12 @@ class Purchase extends Model
         'purchase_date',
     ];
 
-    public function car() { return $this->belongsTo(Car::class); }
+    public function car() { 
+        return $this->belongsTo(Car::class); 
+    }
+
+    public function customer(){
+        return $this->belongsTo(Customer::class);
+    }
 
 }
